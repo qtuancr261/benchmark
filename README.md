@@ -47,10 +47,11 @@ including compiler and standard library support.
 
 The following minimum versions are required to build the library:
 
-* GCC 4.8
+* GCC 4.8 (tested with GCC 4.8.5 Xallocator patch)
 * Clang 3.4
 * Visual Studio 14 2015
 * Intel 2015 Update 1
+* XAllocator lib (custom lib) (installed in lib/libxallocatord.a)
 
 See [Platform-Specific Build Instructions](#platform-specific-build-instructions).
 
@@ -63,8 +64,8 @@ _See [dependencies.md](dependencies.md) for more details regarding supported
 versions of build tools._
 
 ```bash
-# Check out the library.
-$ git clone https://github.com/google/benchmark.git
+# Check out the library with custom resource.
+$ git clone https://github.com/qtuancr261/benchmark.git
 # Benchmark requires Google Test as a dependency. Add the source tree as a subdirectory.
 $ git clone https://github.com/google/googletest.git benchmark/googletest
 # Go to the library root directory
@@ -73,7 +74,7 @@ $ cd benchmark
 $ mkdir build && cd build
 # Generate a Makefile with cmake.
 # Use cmake -G <generator> to generate a different file type.
-$ cmake ../
+$ cmake -DHAVE_POSIX_REGEX=1 ../
 # Build the library.
 # Use make -j<number_of_parallel_jobs> to speed up the build process, e.g. make -j8 .
 $ make

@@ -52,6 +52,10 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "SunOS")
   target_link_libraries(benchmark kstat)
 endif()
 
+#xalloc
+add_library(xallocator STATIC IMPORTED)
+set_property(TARGET xallocator PROPERTY IMPORTED_LOCATION ${PROJECT_SOURCE_DIR}/lib/libxallocatord.a)
+target_link_libraries(benchmark xallocator)
 # Benchmark main library
 add_library(benchmark_main "benchmark_main.cc")
 set_target_properties(benchmark_main PROPERTIES
